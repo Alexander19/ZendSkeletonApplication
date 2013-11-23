@@ -16,6 +16,13 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+    	echo "hola mundo";
         return new ViewModel();
+    }
+    
+    public function holaAction()
+    {
+    	
+    	return new ViewModel(array('nombre'=>'José Alejandro'));
     }
 }
