@@ -80,6 +80,28 @@ class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
 		print_r( $data);
 	}
 	
+	
+	function loadById($user_id)
+	{
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?',array($user_id));
+		$data = $result->current();
+		
+		if ($data !== null)
+		{
+			$this->hydrator($data);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	function hydrator($data)
+	{
+				$this->setNombre($data->usuario);
+		     	$this->setApellidoPaterno($data->curp);
+		    	$this->setApellidoMaterno($data->password);
+	}
 
 	
 	

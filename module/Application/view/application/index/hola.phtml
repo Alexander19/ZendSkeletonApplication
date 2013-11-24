@@ -3,12 +3,13 @@
 
 
     	<?php
-    	if ($this->objeto_usuario instanceof Application\Service\UsuarioService):
+    	if ($this->objeto instanceof Application\Service\UsuarioInterface):
     	?>
     	
 
- <?php echo $this->objeto_usuario->getNombre(); ?>
+ <?php echo $this->objeto->getNombre(); ?>
 
 <?php 
     endif;	
 ?>
+ 

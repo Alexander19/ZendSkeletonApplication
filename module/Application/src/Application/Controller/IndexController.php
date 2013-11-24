@@ -11,7 +11,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Service\UsuarioService;
+//use Application\Service\UsuarioService;
 //use Curso\Service\UsuarioService;
 
 class IndexController extends AbstractActionController
@@ -46,20 +46,24 @@ class IndexController extends AbstractActionController
     	//print_r( $data );
     	//$usuario = new UsuarioService();
     	
+		
+		//$usuario->testDB();	
+		   
+//     	$usuario->setNombre("José Alejandro");
+//     	$usuario->setApellidoPaterno("Pren");
+//     	$usuario->setApellidoMaterno("Xix");
+    	
+    	
+    	
+    	
+    	
+    	
+//     	$parametros ['nombre'] = 'José Alejandro Pren Xix';
 		$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
-		$usuario->testDB();	    
-    	$usuario->setNombre("José Alejandro");
-    	$usuario->setApellidoPaterno("Pren");
-    	$usuario->setApellidoMaterno("Xix");
-    	
-    	echo get_class( $usuario );
-    	
-    	
-    	
-    	$parametros ['nombre'] = 'José Alejandro Pren Xix';
-    	$parametros['objeto_usuario'] = $usuario;
-    	
-    	return new ViewModel($parametros );
+		$usuario->loadById(1);
+     	$parametros['objeto'] = $usuario;
+     	echo get_class( $usuario );
+     	return new ViewModel($parametros );
     	
     //return new ViewModel(array('nombre'=>'José Alejandro'));
     }
