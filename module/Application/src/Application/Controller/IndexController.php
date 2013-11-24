@@ -24,7 +24,28 @@ class IndexController extends AbstractActionController
     
     public function holaAction()
     {
-    	$usuario = new UsuarioService();
+   // $adapter = new Zend\Db\Adapter($configArray);
+    
+    
+    $adapter = new \Zend\Db\Adapter\Adapter(array(
+    		'driver' => 'Mysqli',
+    		'host' => 'localhost',
+    		'database'  => 'sia',
+    		'username' => 'root',
+    		'password' => '',
+    		'options' => array('buffer_results' => true)
+    ));
+    	
+	
+
+		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array(1));
+		echo get_class($result).'<br />';
+    
+    	$data = $result->current();
+    	print_r( $data );
+    	
+		//$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
+	    $usuario = new UsuarioService();
     	$usuario->setNombre("José Alejandro");
     	$usuario->setApellidoPaterno("Pren");
     	$usuario->setApellidoMaterno("Xix");
