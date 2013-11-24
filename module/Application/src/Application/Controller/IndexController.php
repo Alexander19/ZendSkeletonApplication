@@ -12,7 +12,7 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Service\UsuarioService;
-use Application;
+//use Curso\Service\UsuarioService;
 
 class IndexController extends AbstractActionController
 {
@@ -27,7 +27,7 @@ class IndexController extends AbstractActionController
     	$usuario = new UsuarioService();
     	$usuario->setNombre("José Alejandro");
     	$usuario->setApellidoPaterno("Pren");
-    	$usuario->setApelllidoMaterno("Xix");
+    	$usuario->setApellidoMaterno("Xix");
     	
     	echo get_class( $usuario );
     	
