@@ -1,3 +1,14 @@
-<?php
-echo $this->nombre; 
+<?php echo $this->nombre; ?> 
+<br />
+
+
+    	<?php
+    	if ($this->objeto_usuario instanceof Application\Service\UsuarioService):
+    	?>
+    	
+
+ <?php echo $this->objeto_usuario->getNombre(); ?>
+
+<?php 
+    endif;	
 ?>
