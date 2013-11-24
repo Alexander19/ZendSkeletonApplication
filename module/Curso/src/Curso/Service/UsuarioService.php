@@ -4,11 +4,18 @@ namespace Curso\Service;
 
 
 use Application\Service\UsuarioInterface;
-class UsuarioService implements UsuarioInterface {
-	
+use Zend\ServiceManager\ServiceManagerAwareInterface;
+use Zend\ServiceManager\ServiceManager;
+
+class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
+
+	protected $serviceLocator;
 	protected $nombre;
 	protected $apellidoPaterno;
 	protected $apellidoMaterno;
+	
+
+
 	/**
 	 * @return the $nombre
 	 */
@@ -31,7 +38,7 @@ class UsuarioService implements UsuarioInterface {
 	}
 
 	/**
-	 * @param field_type $nombre
+	 * @param field_type $nombrex|
 	 */
 	public function setNombre($nombre) {
 		$this->nombre = $nombre;
@@ -50,6 +57,29 @@ class UsuarioService implements UsuarioInterface {
 	public function setApellidoMaterno($apellidoMaterno) {
 		$this->apellidoMaterno = $apellidoMaterno;
 	}
+	/* (non-PHPdoc)
+	 * @see \Zend\ServiceManager\ServiceManagerAwareInterface::setServiceManager()
+	 */
+	public function setServiceManager(ServiceManager $serviceManager) {
+		// TODO Auto-generated method stub
+		$this->sm = $serviceManager;
+	}
+
+	
+	public function getServiceManager() {
+		// TODO Auto-generated method stub
+		return $this->sm;
+	}
+	
+	public function testDB()
+	{
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?',array(1));
+		echo get_class($result). '<br />';
+		$data = $result->current();
+		print_r( $data);
+	}
+	
 
 	
 	

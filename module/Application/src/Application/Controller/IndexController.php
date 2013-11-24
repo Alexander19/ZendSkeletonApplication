@@ -27,25 +27,27 @@ class IndexController extends AbstractActionController
    // $adapter = new Zend\Db\Adapter($configArray);
     
     
-    $adapter = new \Zend\Db\Adapter\Adapter(array(
-    		'driver' => 'Mysqli',
-    		'host' => 'localhost',
-    		'database'  => 'sia',
-    		'username' => 'root',
-    		'password' => '',
-    		'options' => array('buffer_results' => true)
-    ));
+//     $adapter = new \Zend\Db\Adapter\Adapter(array(
+//     		'driver' => 'Mysqli',
+//     		'host' => 'localhost',
+//     		'database'  => 'sia',
+//     		'username' => 'root',
+//     		'password' => '',
+//     		'options' => array('buffer_results' => true)
+//     ));
     	
 	
-
-		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array(1));
-		echo get_class($result).'<br />';
+       // $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        
+		//$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array(1));
+		//echo get_class($result).'<br />';
     
-    	$data = $result->current();
-    	print_r( $data );
+    	//$data = $result->current();
+    	//print_r( $data );
+    	//$usuario = new UsuarioService();
     	
-		//$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
-	    $usuario = new UsuarioService();
+		$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
+		$usuario->testDB();	    
     	$usuario->setNombre("José Alejandro");
     	$usuario->setApellidoPaterno("Pren");
     	$usuario->setApellidoMaterno("Xix");
