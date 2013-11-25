@@ -18,12 +18,13 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	echo "hola mundo";
+    	echo "hola mundo estoy en la accion INDEX";
         return new ViewModel();
     }
     
     public function holaAction()
     {
+    	echo "hola mundo estoy en la accion HOLA";
    // $adapter = new Zend\Db\Adapter($configArray);
     
     
@@ -53,7 +54,8 @@ class IndexController extends AbstractActionController
 //     	$usuario->setApellidoPaterno("Pren");
 //     	$usuario->setApellidoMaterno("Xix");
     	
-    	
+    	$params = $this->params()->fromRoute();
+    	print_r($params);
     	
     	
     	
