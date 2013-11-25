@@ -27,7 +27,7 @@ return array(
         						'route'    => '/hola',
         						'defaults' => array(
         								'controller' => 'Application\Controller\Index',
-        								'action'     => 'hola',
+        								'action'     => 'index',
         						),
         				),
         		),
