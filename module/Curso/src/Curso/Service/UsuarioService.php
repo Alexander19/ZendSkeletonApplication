@@ -83,17 +83,17 @@ class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
 	
 	function loadById($user_id)
 	{
-		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
-		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?',array($user_id));
+	$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+			
+		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array($user_id));
 		$data = $result->current();
 		
-		if ($data !== null)
-		{
+		if($data !== null){
 			$this->hydrator($data);
 			return true;
 		}
-		return false;
 		
+		return false;
 	}
 	
 	function hydrator($data)

@@ -24,7 +24,7 @@ class IndexController extends AbstractActionController
     
     public function holaAction()
     {
-    	echo "hola mundo estoy en la accion HOLA";
+    	echo "hola mundo estoy en la accion HOLA"  . "<br />";
    // $adapter = new Zend\Db\Adapter($configArray);
     
     
@@ -38,7 +38,7 @@ class IndexController extends AbstractActionController
 //     ));
     	
 	
-       // $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        //$adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
         
 		//$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array(1));
 		//echo get_class($result).'<br />';
@@ -53,19 +53,30 @@ class IndexController extends AbstractActionController
 //     	$usuario->setNombre("José Alejandro");
 //     	$usuario->setApellidoPaterno("Pren");
 //     	$usuario->setApellidoMaterno("Xix");
+//     	$parametros ['nombre'] = 'José Alejandro Pren Xix';
     	
     	$params = $this->params()->fromRoute();
     	print_r($params);
+    	$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
+    	//$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
+    	//$usuario->testDB();
+    	
+    	if($params['id']){
+    		$usuario->loadById($params['id']);
+     	}
+     	else{
+     		$usuario->loadById(2);
+     	}
+    	
+    	//$parametros['nombre'] = 'José Alejandro Pren Xix';
+    	$parametros['objeto'] = $usuario;
+    	
+
     	
     	
+    	echo get_class( $usuario );
     	
-    	
-//     	$parametros ['nombre'] = 'José Alejandro Pren Xix';
-		$usuario = $this->getServiceLocator()->get('Curso\Service\UsuarioService');
-		$usuario->loadById(1);
-     	$parametros['objeto'] = $usuario;
-     	echo get_class( $usuario );
-     	return new ViewModel($parametros );
+    	return new ViewModel($parametros);
     	
     //return new ViewModel(array('nombre'=>'José Alejandro'));
     }

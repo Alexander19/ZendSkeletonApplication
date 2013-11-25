@@ -5,7 +5,8 @@ return array(
         'Application',
     	'Curso',	
     	'ZFTool',
-    	'ZendDeveloperTools'		
+    	'ZendDeveloperTools'	
+    			
     ),
 		
 		

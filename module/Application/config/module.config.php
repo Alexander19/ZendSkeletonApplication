@@ -33,21 +33,21 @@ return array(
         		),
         		
         		'hola2' => array(
-        				'type' => 'Segment',
-        				'options' => array(
-        						'route'    => '/hola2[/:controller[/:action[/:id]]]',
-        						'constraints' => array(
-        						'controller' => '[a-zA-Z][a-zA-Z0-9_-]+',
-        						'action'     => '[a-zA-Z][a-zA-Z0-9_-]+',
-        						),
-        						'defaults' => array(
-        						'__NAMESPACE' => 'Application\Controller',
-        								'controller' => 'index',
-        								'action'     => 'hola',
-        								'id' => 2,
-        						)
-        				),
-        		),
+            	'type' => 'Segment',
+            	'options' => array(
+            		'route' => '/hola2[/:controller[/:action[/:id]]]',
+            		'constraints' => array(
+            			'controller'	=> '[a-zA-Z][a-zA-Z0-9_-]+',
+            			'action'		=> '[a-zA-Z][a-zA-Z0-9_-]+',
+            		),
+            		'defaults' => array(
+            			'__NAMESPACE__'	=> 'Application\Controller',
+            			'controller'	=> 'index',
+            			'action'		=> 'hola',
+            			'id'			=> 1,
+            		),
+            	),
+            ),	
         		
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
