@@ -6,6 +6,9 @@ namespace Curso\Service;
 use Application\Service\UsuarioInterface;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\RowGateway\RowGateway;
+use Zend\Db\Adapter\Driver\ResultInterface;
 
 class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
 
@@ -20,7 +23,7 @@ class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
 	 * @return the $nombre
 	 */
 	public function getNombre() {
-		return $this->nombre.' '.$this->apellidoMaterno. ' '.$this->apellidoMaterno;
+		return $this->nombre;
 	}
 
 	/**
@@ -83,24 +86,100 @@ class UsuarioService implements UsuarioInterface, ServiceManagerAwareInterface {
 	
 	function loadById($user_id)
 	{
-	$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
 			
-		$result = $adapter->query('SELECT * FROM `empleados` WHERE `id` = ?', array($user_id));
+		$result = $adapter->query('SELECT * FROM `users` WHERE `id` = ?', array($user_id));
 		$data = $result->current();
+		return $data;
 		
-		if($data !== null){
-			$this->hydrator($data);
-			return true;
+// 		if($data !== null){
+// 			$this->hydrator($data);
+// 			return true;
+// 		}
+		
+// 		return false;
+	}
+	
+	function eliminar($id)
+	{
+
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		
+		
+		// row gateway
+		$rowGateway = new RowGateway('id', 'users', $adapter);
+		$rowGateway->populate($datos);
+		
+		
+		//$rowGateway->save();
+		
+		//or delete this row:
+		$rowGateway->delete();
+	}
+	
+	function guardar($datos)
+	{
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		
+		
+		// row gateway
+		$rowGateway = new RowGateway('id', 'users', $adapter);
+		$rowGateway->populate($datos);
+		
+		
+		$rowGateway->save();
+		
+		// or delete this row:
+		//$rowGateway->delete();
+	}
+	
+	function actualizar($id,$editar)
+	{
+		$adapter = $this->getServiceManager ()->get ( 'Zend\Db\Adapter\Adapter' );
+		// query the database
+$resultSet = $adapter->query ( 'SELECT * FROM `users` WHERE `id` = ?', array ($id ) );
+		
+		// get array of data
+		$rowData = $resultSet->current ()->getArrayCopy ();
+		
+		// row gateway
+		$rowGateway = new RowGateway ('id', 'users', $adapter );
+		$rowGateway->populate ( $rowData,true );
+		$rowGateway->nombre = $editar['nombre'];
+		$rowGateway->primer_apellido =$editar['primer_apellido'];
+		$rowGateway->segundo_apellido = $editar['segundo_apellido'];
+		$rowGateway->save();
+		
+	
+			
+	}
+	
+		
+	
+	function listar()
+	{
+		
+		$adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
+		
+		$stmt = $adapter->createStatement('SELECT * FROM users');
+		$stmt->prepare();
+		$result = $stmt->execute();
+		
+		
+		if ($result instanceof ResultInterface && $result->isQueryResult()) {
+			$resultSet = new ResultSet;
+			$resultSet->initialize($result);
+		
+			
 		}
-		
-		return false;
+		return $resultSet;
 	}
 	
 	function hydrator($data)
 	{
-				$this->setNombre($data->usuario);
-		     	$this->setApellidoPaterno($data->curp);
-		    	$this->setApellidoMaterno($data->password);
+				$this->setNombre($data->nombre);
+		     	$this->setApellidoPaterno($data->primer_apellido);
+		    	$this->setApellidoMaterno($data->segundo_apellido);
 	}
 
 	

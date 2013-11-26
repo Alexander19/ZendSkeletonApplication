@@ -32,7 +32,7 @@ return array(
 				'username' => 'root',
 				'password' => '',
 				'host' => 'localhost',
-				'schema' => 'sia',
+				'schema' => 'zend',
  	
 				
 ),

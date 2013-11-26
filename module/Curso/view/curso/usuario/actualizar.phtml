@@ -1,0 +1,31 @@
+<html>
+
+<div class="row">
+
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Actualizar Usuario</h3>
+			</div>
+
+			<div class="panel-body">
+			
+				<form action="/usuario/actualizar" method="post">
+
+					<label>Nombre</label>
+					 <input value="<?php echo $this->editar['nombre']; ?>" type="text" name="nombre"> <br>
+					 <label>Apellido Paterno</label>
+					 <input value="<?php echo $this->editar->primer_apellido; ?>" type="text" name="primer_apellido"> <br>
+					 <label>Apellido Materno</label>
+					 <input value="<?php echo $this->editar->segundo_apellido; ?>" type="text" name="segundo_apellido"> <br>
+					 <input type="hidden" name="id" name="id" value=<?php echo $this->editar->id ?>>
+				
+					 <button type="submit" class="btn btn-success">Actualizar</button>
+					 
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

@@ -1,0 +1,15 @@
+<?php echo $this->nombre; ?> 
+<br />
+
+
+    	<?php
+    	if ($this->objeto instanceof Application\Service\UsuarioInterface):
+    	?>
+    	
+
+ <?php echo $this->objeto->getNombre(); ?>
+
+<?php 
+    endif;	
+?>
+ 

@@ -1,0 +1,30 @@
+<html>
+<div class="row">
+
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Agregar nuevo Usuario</h3>
+			</div>
+
+			<div class="panel-body">
+				<form action="/usuario/agregar" method="post">
+
+					<label>Nombre</label>
+					 <input type="text" name="nombre"><br>
+					 
+					 <label>Primer Apellido</label>
+					 <input name="primer_apellido" type="text"><br> 
+					 
+					<label>Segundo Apellido</label>
+					<input type="text" name="segundo_apellido"> <br> 
+					
+					<input type="hidden" name="id"> 
+					<input type="submit"  class="btn btn-success" value="Guardar ">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>
